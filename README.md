@@ -1,2 +1,2 @@
 # NetSpinUP
-Wireframe and Documentation repo with links to other repositories
+Repo fro NetSpinUp.ai currently created as a monilith but will be branched out to individual repos when CI/CD is developed.
