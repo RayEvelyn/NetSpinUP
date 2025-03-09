@@ -1,0 +1,1 @@
+sql scripts for schema and table structures to be applied by flyway
