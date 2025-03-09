@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./src/api
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=your_jwt_secret
+    volumes:
+      - ./src/api:/app
+    restart: always
+
+  web:
+    build: ./src/web/page
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./src/web/page:/app
+    restart: always
