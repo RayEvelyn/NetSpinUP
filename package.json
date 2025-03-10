@@ -3,5 +3,12 @@
     "@reduxjs/toolkit": "^2.6.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.3.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open"
   }
 }

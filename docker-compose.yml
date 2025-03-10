@@ -7,39 +7,37 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
-    environment:
-      - REACT_APP_API_URL=http://backend:5000
     volumes:
       - ./src/web/page:/app
       - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:8080
+    depends_on:
+      - backend
 
   backend:
     build:
       context: ./src/api
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/netspinup
+      - "8080:5000"
     volumes:
       - ./src/api:/app
       - /app/node_modules
+    environment:
+      - NODE_ENV=development
 
   db:
     image: postgres:15
-    restart: always
+    environment:
+      POSTGRES_USER: netspinup
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: netspinup
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: netspinup
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  db_data:
+  postgres_data:
