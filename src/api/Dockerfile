@@ -1,12 +1,20 @@
-# api/Dockerfile
+# Use the official Node.js 18 image as the base
 FROM node:18
 
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
-EXPOSE 3001
-CMD ["npm", "start"]
+# Expose the port the app runs on
+EXPOSE 8000
+
+# Define the command to run the application
+CMD ["node", "api.js"]

@@ -1,32 +1,20 @@
 version: '3.8'
 
 services:
-  api:
-    build: ./src/api
+  backend:
+    build:
+      context: ./src/api
     ports:
-      - "5000:5000"
-    env_file:
-      - .env
+      - "8000:8000"
     environment:
-      - SECRET_KEY=${SECRET_KEY}
-    volumes:
-      - ./src/api:/app
-      - /app/node_modules  # Prevents overwriting node_modules
+      NODE_ENV: production
     restart: unless-stopped
-    command: ["node", "server.js"]  # Explicit API entrypoint
 
-  web:
-    build: ./src/web/page
+  frontend:
+    build:
+      context: ./src/web/page
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
-      - api
-    env_file:
-      - .env
-    environment:
-      - REACT_APP_API_BASE_URL=http://api:5000
-    volumes:
-      - ./src/web/page:/app
-      - /app/node_modules  # Prevents overwriting node_modules
+      - backend
     restart: unless-stopped
-    command: ["npm", "start"]  # Explicit start command
