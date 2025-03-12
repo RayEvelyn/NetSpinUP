@@ -1,13 +1,12 @@
 // Figma node ID mapping
 export const FigmaNodes = {
   // Main Pages
-  HOME: '2:104',          // This should be the full home page frame
-  CONTACT: '2:1739',      
-  BLOG: '2:2144',         
-  BLOG_ARTICLE: '2:2601', 
-  SIGNUP: '2:3067',       
-  PORTAL: '2:3358',       
-  DOCS: '2:3838',         
+  HOME_PAGE: '2:104',      // Home page frame
+  CONTACT_PAGE: '2:309',   // Contact page frame
+  BLOG_PAGE: '2:548',      // Blog page frame
+  DOCS_PAGE: '2:1504',     // Docs page frame
+  PORTAL_PAGE: '2:1265',   // Portal page frame
+  SIGNUP_PAGE: '2:1026',   // Signup page frame
 
   // Main Logo
   MAIN_LOGO: '0:1',
@@ -221,13 +220,7 @@ export const AssetCategories = {
 
 // Helper function to get asset path
 export const getFigmaAsset = (nodeId) => {
-  console.log('Loading asset:', nodeId);
-  try {
-    return require(`../assets/images/${nodeId}.png`);
-  } catch (error) {
-    console.log('Failed to load:', nodeId);
-    return null;
-  }
+  return require(`../assets/images/${nodeId}.png`);
 };
 
 // Helper function to get asset by semantic name
@@ -246,7 +239,7 @@ export const getCategoryAssets = (category) => {
 
 // Page organization
 export const Pages = {
-  MAIN: ['HOME', 'CONTACT', 'BLOG'],
-  AUTH: ['SIGNUP', 'PORTAL'],
-  CONTENT: ['BLOG_ARTICLE', 'DOCS']
+  MAIN: ['HOME_PAGE', 'CONTACT_PAGE', 'BLOG_PAGE'],
+  AUTH: ['SIGNUP_PAGE', 'PORTAL_PAGE'],
+  CONTENT: ['DOCS_PAGE']
 }; 
